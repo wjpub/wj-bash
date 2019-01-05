@@ -1,0 +1,31 @@
+[Unit]
+Description=Aisvr Service Shell ui
+After=mysql.service
+
+[Service]
+User=root
+Restart=always
+Type=forking
+ExecStart=path_to_startup.sh
+ExecStop=path_to_shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+# # startup.sh detail
+# #!/bin/bash
+# [ $(which greadlink | wc -l) -gt 0 ] && readlink(){ greadlink $@ ; } && echo "Enable GUN readlink"
+# cpath=$(dirname $(readlink -f $0)) \|| ( echo 'Make sure you have GUN type of readlink.' && exit 99 ) || exit 99
+# log=$cpath/log/run_$(date +%Y%m%d_%H%M%S).log
+# cd $cpath
+# nohup npm run dev > $log 2>&1  & echo "service started. Please check log file \n tail -1000f $log"
+
+# # shutdown.sh
+# #!/bin/bash
+# pid=$(ps -aux | grep nuxt | awk '{print $2}')
+# [[ -z "$pid" ]] && echo "No Service found." && exit 0
+# echo "Trying killing service ($pid)."
+# kill -9 $pid
+# echo "service($pid) is killed."
