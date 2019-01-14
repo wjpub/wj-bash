@@ -13,9 +13,9 @@ openresty_install() {
         echo "add openresty org apt-repository"
         sudo add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main"
         echo "apt update"
-        sudo apt-get update
+        sudo apt-get -y update
         echo "install openresty"
-        sudo apt-get install openresty
+        sudo apt-get -y install openresty
         # echo "install without default pkg: openresty-opm  openresty-restydoc
         # sudo apt-get install --no-install-recommends openresty
     fi
